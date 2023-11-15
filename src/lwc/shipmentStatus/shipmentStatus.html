@@ -1,0 +1,26 @@
+<template>
+    <div if:false={isError}>
+        <lightning-card title="Shipment Status">
+            <div if:false={isSpinnerShowed} class="slds-list_horizontal">
+                <div class="slds-text-heading_small slds-m-left_small">
+                    {shipmentStatus}
+                </div>
+                <div class=slds-m-left_small>
+                    <lightning-button-icon icon-name="utility:refresh"
+                                           alternative-text="Get Actual Status"
+                                           title="Get Actual Status"
+                                           variant="bare"
+                                           size="small"
+                                           onclick={fetchShipmentStatus}
+                    ></lightning-button-icon>
+                </div>
+            </div>
+            <div if:true={isSpinnerShowed} class="slds-m-around_large">
+                <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+            </div>
+        </lightning-card>
+    </div>
+    <div if:true={isError} class="slds-theme_error">
+        {labels.error}
+    </div>
+</template>
